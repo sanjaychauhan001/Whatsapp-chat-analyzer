@@ -6,5 +6,4 @@ matplotlib
 plotly
 urlextract 
 wordcloud
-collections
 emoji
