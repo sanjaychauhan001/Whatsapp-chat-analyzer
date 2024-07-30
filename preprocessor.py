@@ -9,9 +9,12 @@ def preprocessing(data):
 
     df = pd.DataFrame({'message':messages,'date':dates})
     def date_parser(date_str):
-        # Remove the trailing hyphen and space
         date_str = date_str.rstrip(' -')
-        return pd.to_datetime(date_str, format="%d/%m/%Y, %I:%M %p")
+        try:
+            return pd.to_datetime(date_str, format="%d/%m/%Y, %I:%M %p")
+        except ValueError:
+            return pd.to_datetime(date_str, format="%m/%d/%y, %I:%M %p")
+        
     df['date'] = df['date'].apply(date_parser)
 
     user = []
